@@ -1,0 +1,195 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+}
+
+.title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 0.25rem;
+    letter-spacing: 0.02em;
+}
+
+.row {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.5rem;
+}
+
+.group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    letter-spacing: 0em;
+}
+
+.inputWrapper {
+    display: flex;
+    align-items: center;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 0 0.75rem;
+    height: 40px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.inputWrapper:focus-within {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1), 0 0 12px rgba(99, 102, 241, 0.2);
+    transform: translateY(-1px);
+}
+
+.hash {
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-right: 4px;
+    font-size: 0.9rem;
+}
+
+.inputHex {
+    border: none;
+    background: transparent;
+    width: 100%;
+    height: 100%;
+    font-family: 'Inter', monospace;
+    font-size: 0.9rem;
+    color: var(--text-main);
+    outline: none;
+    text-transform: uppercase;
+    user-select: text;
+    -webkit-user-select: text;
+}
+
+.inputReadOnly {
+    border: none;
+    background: transparent;
+    width: 100%;
+    height: 100%;
+    font-family: 'Inter', monospace;
+    font-size: 0.9rem;
+    color: var(--text-main);
+    outline: none;
+    cursor: default;
+    user-select: text;
+    -webkit-user-select: text;
+}
+
+.multiInput {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.5rem;
+}
+
+.inputNum {
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    height: 40px;
+    padding: 0 0.5rem;
+    font-family: 'Inter', monospace;
+    font-size: 0.9rem;
+    color: var(--text-main);
+    text-align: center;
+    outline: none;
+    width: 100%;
+    transition: all 0.2s;
+    user-select: text;
+    -webkit-user-select: text;
+}
+
+.inputNum:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 1px var(--primary);
+}
+
+.copyBtn {
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    color: var(--text-muted);
+    transition: all 0.2s;
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.copyBtn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: var(--bg-app);
+}
+
+/* Read only */
+.readOnly .val {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    height: 40px;
+    font-family: monospace;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.group:has(> .multiInput .val:nth-child(4)) .multiInput {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+/* Advanced Features Toggle */
+.advancedToggle {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    cursor: pointer;
+    padding: 0.5rem 0;
+    /* Removed underline, using icon for affordance now */
+    align-self: flex-start;
+    transition: all 0.2s;
+    opacity: 0.8;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-weight: 600;
+}
+
+.advancedToggle:hover {
+    color: var(--primary);
+    opacity: 1;
+}
+
+.advancedSection {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

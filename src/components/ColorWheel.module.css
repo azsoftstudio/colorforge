@@ -1,0 +1,99 @@
+.container {
+    position: relative;
+    width: 320px;
+    height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+}
+
+.hueRing {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: conic-gradient(red 0deg,
+            yellow 60deg,
+            lime 120deg,
+            cyan 180deg,
+            blue 240deg,
+            magenta 300deg,
+            red 360deg);
+    box-shadow: var(--shadow-md);
+    cursor: crosshair;
+}
+
+/* Hollow out the center */
+.hueRing::before {
+    content: '';
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    right: 30px;
+    bottom: 30px;
+    background-color: var(--bg-app);
+    border-radius: 50%;
+    /* This creates the ring effect */
+}
+
+.hueHandle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: white;
+    border: 2px solid white;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5), inset 0 0 2px rgba(0, 0, 0, 0.5);
+    transform-origin: center;
+    pointer-events: none;
+    /* Let clicks pass through to container */
+    z-index: 10;
+}
+
+.svSquare {
+    position: relative;
+    width: 170px;
+    /* Fits inside the inner circle */
+    height: 170px;
+    background-color: red;
+    /* Dynamic */
+    cursor: crosshair;
+    z-index: 5;
+    border-radius: 4px;
+    /* Slight rounding */
+    overflow: hidden;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+.svOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+}
+
+.svOverlayWhite {
+    background: linear-gradient(to right, #fff, rgba(255, 255, 255, 0));
+}
+
+.svOverlayBlack {
+    background: linear-gradient(to bottom, transparent, #000);
+}
+
+.svHandle {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: transparent;
+    border: 2px solid white;
+    box-shadow: 0 0 0 1px black;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 10;
+}

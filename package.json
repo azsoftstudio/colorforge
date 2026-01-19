@@ -1,0 +1,73 @@
+{
+  "name": "color-forge",
+  "private": true,
+  "version": "0.1.0",
+  "type": "commonjs",
+  "main": "electron/main.js",
+  "author": "AZSoftStudio",
+  "description": "A professional color system for UI and game design",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "make-exe": "npm run build && electron-builder build --win",
+    "generate-icon": "node scripts/generate-icon.js"
+  },
+  "dependencies": {
+    "jimp": "^1.6.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@types/react": "^19.2.5",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.1",
+    "concurrently": "^9.2.1",
+    "electron": "^39.2.7",
+    "electron-builder": "^26.4.0",
+    "eslint": "^9.39.1",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.4.24",
+    "globals": "^16.5.0",
+    "png-to-ico": "^3.0.1",
+    "vite": "^7.2.4",
+    "wait-on": "^9.0.3"
+  },
+  "build": {
+    "appId": "com.colorforge.app",
+    "productName": "ColorForge",
+    "copyright": "Copyright © 2026 AZSoftStudio",
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "package.json",
+      "build/icon.ico"
+    ],
+    "directories": {
+      "output": "release"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "build/icon.ico",
+      "legalTrademarks": "ColorForge is a trademark of AZSoftStudio",
+      "requestedExecutionLevel": "asInvoker"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "deleteAppDataOnUninstall": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "ColorForge",
+      "runAfterFinish": true,
+      "artifactName": "${productName} Setup ${version}.${ext}",
+      "installerIcon": "build/icon.ico",
+      "uninstallerIcon": "build/icon.ico",
+      "installerHeaderIcon": "build/icon.ico",
+      "uninstallDisplayName": "ColorForge"
+    }
+  }
+}
