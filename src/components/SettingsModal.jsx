@@ -1,16 +1,22 @@
 import { useState } from 'react';
 import styles from './SettingsModal.module.css';
-import FullDocsModal from './FullDocsModal';
 
 const SettingsModal = ({ onClose, theme, setTheme }) => {
     const [activeTab, setActiveTab] = useState('about');
     const [isClosing, setIsClosing] = useState(false);
     const [dropdownOpen, setDropdownOpen] = useState(false);
-    const [showFullDocs, setShowFullDocs] = useState(false);
 
     const handleClose = () => {
         setIsClosing(true);
         setTimeout(onClose, 200);
+    };
+
+    const handleOpenFullDocs = () => {
+        if (window.electronAPI?.openDocumentation) {
+            window.electronAPI.openDocumentation();
+        } else {
+            window.open('/documentation.html', '_blank');
+        }
     };
 
     return (
@@ -158,7 +164,7 @@ const SettingsModal = ({ onClose, theme, setTheme }) => {
                                 </div>
                                 <p className={styles.quickStartFooter}>That’s it. No setup. No accounts. No uploads.</p>
 
-                                <button className={styles.fullDocsBtn} onClick={() => setShowFullDocs(true)}>
+                                <button className={styles.fullDocsBtn} onClick={handleOpenFullDocs}>
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                                         <polyline points="14 2 14 8 20 8"></polyline>
@@ -170,7 +176,6 @@ const SettingsModal = ({ onClose, theme, setTheme }) => {
                                 </button>
                             </div>
                         )}
-
                         {activeTab === 'license' && (
                             <div className={styles.licenseText}>
                                 {`MIT License
@@ -225,7 +230,6 @@ SOFTWARE.`}
                     </main>
                 </div>
             </div>
-            {showFullDocs && <FullDocsModal onClose={() => setShowFullDocs(false)} />}
         </div>
     );
 };

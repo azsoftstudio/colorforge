@@ -46,7 +46,7 @@
       "build/icon.ico"
     ],
     "directories": {
-      "output": "release"
+      "output": "Windows Build"
     },
     "win": {
       "target": "nsis",
