@@ -71,6 +71,9 @@ The UI is divided into conceptual layers within a responsive sidebar layout.
 - **ImageColorPicker.jsx**  
   Modular interface for sampling colors from uploaded images or the entire screen (via EyeDropper API).
 
+### Documentation Architecture
+- **System Browser Integration**: To maintain a secure and performant sandbox, the full documentation is opened in the system's default browser via an IPC bridge (`preload.js`), rather than an in-app iframe.
+
 ## 4. Security Model 🛡️
 
 ColorForge follows a Default-Deny Electron security posture.
@@ -80,6 +83,7 @@ ColorForge follows a Default-Deny Electron security posture.
 | Node Integration  | Disabled | Prevents filesystem and shell access              |
 | Context Isolation | Enabled  | Separates UI from Electron internals              |
 | Sandbox           | Enabled  | Restricts OS-level access                         |
+| Preload Script    | Active   | Safely bridges IPC commands to the renderer       |
 | CSP               | Strict   | Blocks all external scripts and network requests  |
 
 ## 5. Performance & Persistence
