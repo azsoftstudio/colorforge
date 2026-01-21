@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useCallback } from 'react';
 import { useColor } from '../context/ColorContext';
 import styles from './ColorWheel.module.css';
 
@@ -19,7 +19,7 @@ const ColorWheel = () => {
     const valPercent = hsv.v;
 
     // Handle Hue Drag
-    const handleHueDrag = (e) => {
+    const handleHueDrag = useCallback((e) => {
         if (!wheelRef.current) return;
         e.preventDefault();
 
@@ -38,10 +38,10 @@ const ColorWheel = () => {
         if (angle < 0) angle += 360;
 
         updateHsv({ h: Math.round(angle) });
-    };
+    }, [updateHsv]);
 
     // Handle SV Drag
-    const handleSVDrag = (e) => {
+    const handleSVDrag = useCallback((e) => {
         if (!squareRef.current) return;
         e.preventDefault();
 
@@ -60,7 +60,7 @@ const ColorWheel = () => {
         const v = Math.round(100 - (y / rect.height) * 100);
 
         updateHsv({ s, v });
-    };
+    }, [updateHsv]);
 
     // Mouse Up Global Handler
     useEffect(() => {
@@ -87,7 +87,7 @@ const ColorWheel = () => {
             window.removeEventListener('touchmove', handleMove);
             window.removeEventListener('touchend', handleUp);
         };
-    }, [isDraggingHue, isDraggingSV, hsv]);
+    }, [isDraggingHue, isDraggingSV, handleHueDrag, handleSVDrag]);
 
     return (
         <div className={styles.container}>

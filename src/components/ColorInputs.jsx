@@ -4,7 +4,7 @@ import { cmykToRgb, hslToRgb } from '../utils/colorUtils';
 import styles from './ColorInputs.module.css';
 
 const ColorInputs = () => {
-    const { hex, rgb, hsv, cmyk, hsl, lab, lch, updateFromHex, updateFromRgb, addToHistory, showToast } = useColor();
+    const { hex, rgb, cmyk, hsl, lab, lch, updateFromHex, updateFromRgb, addToHistory, showToast } = useColor();
 
     // Local state for inputs to allow typing before validation kicks in
     const [hexInput, setHexInput] = useState(hex);
@@ -29,7 +29,7 @@ const ColorInputs = () => {
         return () => clearTimeout(timer);
     }, [hex, addToHistory]);
 
-    const handleCopy = (text, format) => {
+    const handleCopy = (text) => {
         navigator.clipboard.writeText(text);
         showToast(`Copied ${text}`);
     };

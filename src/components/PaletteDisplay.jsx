@@ -1,16 +1,27 @@
 import { useState, useMemo, useRef, useEffect } from 'react';
 import { useColor } from '../context/ColorContext';
-import { generateHarmoniesLCH, hsvToRgb, rgbToHex } from '../utils/colorUtils';
+import { generateHarmoniesLCH, hsvToRgb, rgbToHex, rgbToHsv } from '../utils/colorUtils';
 import styles from './PaletteDisplay.module.css';
 
 const PaletteDisplay = () => {
-    const { hsv, updateHsv } = useColor();
+    const { hsv, updateHsv, hex } = useColor();
     const [activeTab, setActiveTab] = useState('complementary');
     const tabsRef = useRef(null);
     const [showLeftArrow, setShowLeftArrow] = useState(false);
     const [showRightArrow, setShowRightArrow] = useState(false);
 
     const [enforceContrast, setEnforceContrast] = useState(false);
+
+    // Palette Locking
+    const [isLocked, setIsLocked] = useState(false);
+    const [lockedHsv, setLockedHsv] = useState(hsv);
+
+    // Sync lockedHsv with global hsv when NOT locked
+    useEffect(() => {
+        if (!isLocked) {
+            setLockedHsv(hsv);
+        }
+    }, [hsv, isLocked]);
 
     // Detect Theme (Basic implementation)
     const [isDark, setIsDark] = useState(true);
@@ -25,11 +36,11 @@ const PaletteDisplay = () => {
         return () => observer.disconnect();
     }, []);
 
-    // Generate harmonies using Pro LCH Engine
+    // Generate harmonies using Pro LCH Engine based on LOCKED HSV
     const harmonies = useMemo(() => {
-        const baseRgb = hsvToRgb(hsv);
+        const baseRgb = hsvToRgb(lockedHsv);
         return generateHarmoniesLCH(baseRgb, enforceContrast, isDark);
-    }, [hsv, enforceContrast, isDark]);
+    }, [lockedHsv, enforceContrast, isDark]);
 
     const tabs = [
         { id: 'monochromatic', label: 'Monochromatic' },
@@ -77,18 +88,39 @@ const PaletteDisplay = () => {
         }
     };
 
+    // Calculate base color for display (if locked, show locked color, else current)
+    // Actually, design-wise: The "Base" swatch in the row should probably reflect the *palette's* base.
+    // So if locked, it shows the locked base.
+    const paletteBaseRgb = hsvToRgb(lockedHsv);
+    const paletteBaseHex = rgbToHex(paletteBaseRgb);
+
     return (
         <div className={styles.container}>
-            <div className={styles.headerRow}>
-                <h3 className={styles.title}>Harmony Palette</h3>
-                <label className={styles.checkboxLabel} title="Auto-adjust lightness for WCAG 4.5:1">
-                    <input
-                        type="checkbox"
-                        checked={enforceContrast}
-                        onChange={(e) => setEnforceContrast(e.target.checked)}
-                        className={styles.checkboxInput}
-                    />
-                    <span className={styles.checkboxText}>Enforce WCAG contrast</span>
+            <h3 className={styles.title}>Harmony Palette</h3>
+
+            <div className={styles.controlsRow}>
+                {/* Palette Lock Toggle */}
+                <label className={styles.toggleLabel}>
+                    <div
+                        className={`${styles.toggleSwitch} ${isLocked ? styles.on : ''}`}
+                        onClick={() => setIsLocked(!isLocked)}
+                        title={isLocked ? "Unlock Palette" : "Lock Palette"}
+                    >
+                        <div className={styles.toggleKnob}></div>
+                    </div>
+                    <span className={styles.toggleText}>Lock Palette</span>
+                </label>
+
+                {/* WCAG Contrast Toggle */}
+                <label className={styles.toggleLabel}>
+                    <div
+                        className={`${styles.toggleSwitch} ${enforceContrast ? styles.on : ''}`}
+                        onClick={() => setEnforceContrast(!enforceContrast)}
+                        title={enforceContrast ? "Disable WCAG contrast" : "Enforce WCAG 4.5:1 contrast"}
+                    >
+                        <div className={styles.toggleKnob}></div>
+                    </div>
+                    <span className={styles.toggleText}>Enforce WCAG</span>
                 </label>
             </div>
 
@@ -127,9 +159,9 @@ const PaletteDisplay = () => {
 
                 <div
                     className={styles.swatch}
-                    style={{ backgroundColor: rgbToHex(hsvToRgb(hsv)) }}
-                    title="Base Color"
-                    onClick={() => handleColorClick(hsv)}
+                    style={{ backgroundColor: paletteBaseHex }}
+                    title={paletteBaseHex}
+                    onClick={() => handleColorClick(lockedHsv)}
                 >
                     <span className={styles.swatchLabel}>Base</span>
                 </div>
@@ -141,18 +173,7 @@ const PaletteDisplay = () => {
                             key={idx}
                             className={styles.swatch}
                             style={{ backgroundColor: hx }}
-                            // onClick={() => handleColorClick(colRgb)} // Need to convert RGB back to HSV for updateHsv? 
-                            // updateHsv handles RGB? checking context... 
-                            // context: updateHsv expects {h,s,v}. We have rgb.
-                            // Need to import rgbToHsv or add updateFromBaseRGB helper. 
-                            // Let's use rgbToHsv in the click handler.
-                            onClick={() => {
-                                // Dynamic import or just rely on global import? 
-                                // rgbToHsv is not imported yet. I need to fix imports.
-                                import('../utils/colorUtils').then(utils => {
-                                    handleColorClick(utils.rgbToHsv(colRgb));
-                                });
-                            }}
+                            onClick={() => handleColorClick(rgbToHsv(colRgb))}
                             title={hx}
                         >
                             <span className={styles.swatchLabel}>{hx}</span>

@@ -12,48 +12,133 @@
     gap: 0.5rem;
 }
 
-.checkboxLabel {
+.headerRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 0.25rem;
+}
+
+.title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-main);
+    margin: 0;
+}
+
+.controlsRow {
     display: flex;
     align-items: center;
     gap: 1rem;
-    cursor: pointer;
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    user-select: none;
     padding: 0.5rem 0.75rem;
-    border-radius: 6px;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    background: transparent;
-    border: 1px solid transparent;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: 8px;
 }
 
-.checkboxLabel:hover {
-    background: var(--bg-input);
+.iconBtn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.iconBtn:hover {
     color: var(--text-main);
+    background: var(--bg-input);
+}
+
+.iconBtn.active {
+    color: var(--primary);
+    background: var(--bg-input);
+}
+
+.lockBtn {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 0.35rem 0.6rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.lockBtn:hover {
+    color: var(--text-main);
+    background: var(--bg-input);
     border-color: var(--border);
 }
 
-.checkboxLabel:active {
-    transform: scale(0.98);
+.lockBtn.active {
+    color: var(--primary);
+    background: var(--bg-input);
+    border-color: var(--primary);
 }
 
-.checkboxInput {
+/* Unified Toggle Switches */
+.toggleLabel {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     cursor: pointer;
-    accent-color: var(--primary);
-    width: 16px;
-    height: 16px;
-    margin: 0;
-    transition: transform 0.2s;
+    user-select: none;
 }
 
-.checkboxLabel:hover .checkboxInput {
-    transform: scale(1.1);
-}
-
-.checkboxText {
+.toggleText {
+    font-size: 0.75rem;
     font-weight: 500;
-    letter-spacing: 0.02em;
+    color: var(--text-muted);
+    letter-spacing: 0.01em;
 }
+
+.toggleSwitch {
+    width: 32px;
+    height: 18px;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: 99px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.toggleSwitch:hover {
+    border-color: var(--text-muted);
+}
+
+.toggleSwitch.on {
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+.toggleKnob {
+    width: 12px;
+    height: 12px;
+    background: var(--text-muted);
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: all 0.2s ease;
+}
+
+.toggleSwitch.on .toggleKnob {
+    left: 16px;
+    background: white;
+}
+
 
 .tabs {
     display: flex;

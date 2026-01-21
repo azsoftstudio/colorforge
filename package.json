@@ -2,6 +2,7 @@
   "name": "color-forge",
   "private": true,
   "version": "0.1.0",
+  "license": "MIT",
   "type": "commonjs",
   "main": "electron/main.js",
   "author": "AZSoftStudio",
@@ -15,7 +16,6 @@
     "generate-icon": "node scripts/generate-icon.js"
   },
   "dependencies": {
-    "jimp": "^1.6.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },

@@ -5,14 +5,10 @@ import styles from './ImageColorPicker.module.css';
 const ImageColorPicker = ({ onClose }) => {
     const { updateFromHex } = useColor();
     const [image, setImage] = useState(null);
-    const [supportsEyeDropper, setSupportsEyeDropper] = useState(false);
+    const [supportsEyeDropper] = useState(() => 'EyeDropper' in window);
     const [isClosing, setIsClosing] = useState(false);
     const canvasRef = useRef(null);
     const fileInputRef = useRef(null);
-
-    useEffect(() => {
-        setSupportsEyeDropper('EyeDropper' in window);
-    }, []);
 
     const handleClose = () => {
         setIsClosing(true);
@@ -68,7 +64,7 @@ const ImageColorPicker = ({ onClose }) => {
                 const result = await eyeDropper.open();
                 updateFromHex(result.sRGBHex);
                 handleClose();
-            } catch (err) {
+            } catch {
                 console.log('Color picking canceled');
             }
             return;

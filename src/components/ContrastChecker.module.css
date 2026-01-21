@@ -4,9 +4,21 @@
     gap: 0.75rem;
 }
 
-.title {
-    display: none;
-    /* Hidden as it's now a section header */
+.separator {
+    height: 1px;
+    background: var(--border);
+    opacity: 0.3;
+    margin: 0.75rem 0;
+}
+
+.subtitle {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0;
+    margin-bottom: 0.5rem;
 }
 
 .grid {

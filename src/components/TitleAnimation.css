@@ -1,0 +1,71 @@
+.title-container {
+    display: flex;
+    overflow: hidden;
+    /* Contain the flying letters if needed, or remove if they fly too far */
+    padding: 0.2rem;
+    /* Give space for blur/glow */
+}
+
+.title-char {
+    display: inline-block;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-main);
+    opacity: 0;
+    transform: translateY(-50px) scale(0.5);
+    /* Start state: above and small */
+    filter: blur(10px);
+
+    /* 
+       Spring Physics Logic:
+       - cubic-bezier(0.34, 1.56, 0.64, 1): "Overshoot" curve.
+       - The 1.56 Y value creates the "bounce" past the target.
+    */
+    animation: springAssembly 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* 
+   Randomize slightly for chaos? 
+   We can use nth-child to alter the starting position so they don't all come from straight up.
+*/
+
+.title-char:nth-child(odd) {
+    --start-y: -40px;
+    --start-x: -20px;
+}
+
+.title-char:nth-child(even) {
+    --start-y: -60px;
+    --start-x: 20px;
+}
+
+.title-char:nth-child(3n) {
+    --start-y: -80px;
+    --start-x: 0px;
+}
+
+@keyframes springAssembly {
+    0% {
+        opacity: 0;
+        transform: translate(var(--start-x, 0), var(--start-y, -50px)) scale(0.5) rotate(-10deg);
+        filter: blur(20px);
+        /* Increased blur */
+        color: var(--primary);
+        /* Start with color */
+    }
+
+    60% {
+        opacity: 1;
+        color: var(--accent);
+        /* Transition through accent */
+        /* The cubic bezier handles the overshoot here */
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1) rotate(0deg);
+        filter: blur(0px);
+        color: var(--text-main);
+        /* End state */
+    }
+}

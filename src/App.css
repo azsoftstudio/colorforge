@@ -43,7 +43,16 @@
   color: var(--text-muted);
   background: transparent;
   border: 1px solid transparent;
+  border: 1px solid transparent;
   transition: all 0.2s;
+}
+
+.icon-btn.with-label {
+  width: auto;
+  padding: 0 1rem;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
 }
 
 .icon-btn:hover:not(:disabled) {
@@ -158,7 +167,6 @@
 
 [data-theme='dark'] .random-btn {
   color: #fff;
-  /* Dark mode: White text */
 }
 
 @media (max-width: 600px) {

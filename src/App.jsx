@@ -6,8 +6,9 @@ import PaletteDisplay from './components/PaletteDisplay';
 import ContrastChecker from './components/ContrastChecker';
 import ColorHistory from './components/ColorHistory';
 import ImageColorPicker from './components/ImageColorPicker';
-import AboutModal from './components/AboutModal';
+import SettingsModal from './components/SettingsModal';
 import KeyboardShortcuts from './components/KeyboardShortcuts';
+import TitleAnimation from './components/TitleAnimation';
 import './App.css';
 
 const RandomButton = () => {
@@ -83,7 +84,7 @@ const InnerApp = () => {
       document.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseup', handleMouseUp);
     };
-  }, [isResizing]);
+  }, [isResizing, sidebarOpen]);
 
   return (
     <main className="main-content">
@@ -172,15 +173,15 @@ function App() {
 
   return (
     <ColorProvider>
-      <AppInner theme={theme} toggleTheme={toggleTheme} />
+      <AppInner theme={theme} setTheme={setTheme} toggleTheme={toggleTheme} />
     </ColorProvider>
   )
 }
 
-const AppInner = ({ theme, toggleTheme }) => {
+const AppInner = ({ theme, setTheme }) => {
   const { undo, redo, canUndo, canRedo } = useColor();
   const [showImagePicker, setShowImagePicker] = useState(false);
-  const [showAbout, setShowAbout] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
 
   useEffect(() => {
     // Keyboard shortcuts for undo/redo
@@ -202,7 +203,7 @@ const AppInner = ({ theme, toggleTheme }) => {
     <div className="app-container">
       <header className="app-header">
         <div className="logo">
-          <h1>ColorForge</h1>
+          <TitleAnimation />
         </div>
 
         <div className="header-actions">
@@ -231,9 +232,9 @@ const AppInner = ({ theme, toggleTheme }) => {
             </svg>
           </button>
 
-          {/* Image upload button */}
+          {/* Image upload button - WITH LABEL */}
           <button
-            className="icon-btn image-btn"
+            className="icon-btn image-btn with-label"
             onClick={() => setShowImagePicker(true)}
             title="Pick from image or screen"
           >
@@ -242,39 +243,20 @@ const AppInner = ({ theme, toggleTheme }) => {
               <circle cx="8.5" cy="8.5" r="1.5"></circle>
               <polyline points="21 15 16 10 5 21"></polyline>
             </svg>
+            <span>Image</span>
           </button>
 
-          <button className="theme-toggle" onClick={toggleTheme} title="Toggle Theme">
-            {theme === 'light' ? (
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-              </svg>
-            ) : (
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="5"></circle>
-                <line x1="12" y1="1" x2="12" y2="3"></line>
-                <line x1="12" y1="21" x2="12" y2="23"></line>
-                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                <line x1="1" y1="12" x2="3" y2="12"></line>
-                <line x1="21" y1="12" x2="23" y2="12"></line>
-                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-              </svg>
-            )}
-          </button>
-
-          {/* About Button */}
+          {/* Settings Button - WITH LABEL (Replaces About & Theme Toggle) */}
           <button
-            className="icon-btn"
-            onClick={() => setShowAbout(true)}
-            title="About Application"
+            className="icon-btn with-label"
+            onClick={() => setShowSettings(true)}
+            title="Settings"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="12" cy="12" r="10"></circle>
-              <line x1="12" y1="16" x2="12" y2="12"></line>
-              <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
             </svg>
+            <span>Settings</span>
           </button>
         </div>
       </header>
@@ -285,8 +267,12 @@ const AppInner = ({ theme, toggleTheme }) => {
         <ImageColorPicker onClose={() => setShowImagePicker(false)} />
       )}
 
-      {showAbout && (
-        <AboutModal onClose={() => setShowAbout(false)} />
+      {showSettings && (
+        <SettingsModal
+          onClose={() => setShowSettings(false)}
+          theme={theme}
+          setTheme={setTheme}
+        />
       )}
     </div>
   );

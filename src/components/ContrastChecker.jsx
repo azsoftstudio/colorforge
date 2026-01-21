@@ -24,7 +24,8 @@ const ContrastChecker = () => {
 
     return (
         <div className={styles.container}>
-            <h3 className={styles.title}>Contrast & Accessibility</h3>
+            <div className={styles.separator}></div>
+            <h4 className={styles.subtitle}>Accessibility Rating</h4>
 
             <div className={styles.grid}>
                 {/* White Text Card */}

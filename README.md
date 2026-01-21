@@ -1,16 +1,48 @@
-# React + Vite
+# ColorForge
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ColorForge is a high-end color system design tool built for UI designers and game developers. It provides a sophisticated interface for exploring color harmonies, checking accessibility, and managing color workflows.
 
-Currently, two official plugins are available:
+## Key Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Interactive Color Wheel**: A premium, "floating" color wheel with support for HSV and LCH color spaces.
+- **Harmony Palette**: Generate and explore color schemes based on LCH for perceptually uniform results.
+- **Palette Lock**: Lock your generated colors to browse without the palette regenerating.
+- **WCAG Contrast Checker**: Built-in accessibility checks against white and black text with AA/AAA ratings.
+- **Image Color Picker**: Upload images and pick colors directly using the native EyeDropper API where supported.
+- **Persistent History**: Your recently used colors are saved automatically using `localStorage`.
+- **Keyboard Shortcuts**: Power-user support for Undo (Ctrl+Z) and Redo (Ctrl+Y).
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Frontend**: React 19, Vite
+- **Desktop**: Electron (Native app support)
+- **Styling**: Vanilla CSS with CSS Modules
+- **Color Logic**: Custom-built LCH/LAB conversion utilities
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Prerequisites
+- Node.js (Latest LTS recommended)
+- npm or yarn
+
+### Installation
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+### Development
+To run the app in development mode:
+```bash
+npm run dev
+```
+
+### Build
+To build the standalone executable for Windows:
+```bash
+npm run make-exe
+```
+
+## Optimization & Credits
+Developed by **AZSoftStudio**. Focused on performance, accessibility, and high-end design aesthetics.
