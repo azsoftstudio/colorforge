@@ -31,8 +31,12 @@ User interaction via:
 
 #### State Management
 `ColorContext.jsx` serves as the single source of truth:
-- Stores canonical color representation (HSV)
-- Handles all color-space conversions (HEX ↔ RGB ↔ HSV ↔ LCH, etc.)
+- Stores canonical color representation (**HSV**) for selection logic.
+- Implements a **Triple-Space Convergence**:
+    - **HSV**: Drives the primary selection logic and UI state.
+    - **HSL**: Utilized as a CSS rendering shortcut for the color square background.
+    - **LCH**: Powers the professional harmony engine for perceptually uniform palettes.
+- Handles all secondary color-space conversions (HEX ↔ RGB ↔ HSV ↔ LCH, etc.).
 - Manages undo/redo stacks (50 states)
 - Manages persistent **Color History** (10 items)
 

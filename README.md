@@ -25,8 +25,8 @@
 ## 🚀 Key Features
 
 ### 🎡 Premium Color Exploration
-- **Floating Color Wheel**: An interactive, high-fidelity wheel supporting **HSV** and **LCH** color spaces for intuitive selection.
-- **Pro LCH Engine**: Perceptually uniform color generation ensures your harmonies are visually balanced and mathematically accurate.
+- **Hover-Ready Color Wheel**: An intuitive **HSV** (Hue, Saturation, Value) selection interface with high-fidelity visual rendering.
+- **Pro LCH Engine**: Perceptually uniform color generation via the **LCH** (Lightness, Chroma, Hue) space ensures your harmonies are visually balanced and mathematically superior to standard RGB/HSV models.
 
 ### 📋 Workflow Optimization
 - **Palette Lock**: Freeze your inspiration. Lock generated colors to browse alternatives without losing your core base.
