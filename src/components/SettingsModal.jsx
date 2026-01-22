@@ -211,7 +211,7 @@ SOFTWARE.`}
                                 </div>
 
                                 <h2 className={styles.appName}>ColorForge</h2>
-                                <span className={styles.version}>v1.0.0</span>
+                                <span className={styles.version}>v0.1.0</span>
 
                                 <p className={styles.description}>
                                     A professional color system designed for designers and developers.
