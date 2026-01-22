@@ -159,7 +159,7 @@ const SettingsModal = ({ onClose, theme, setTheme }) => {
                                 <p className={styles.quickStartFooter}>That’s it. No setup. No accounts. No uploads.</p>
 
                                 <a
-                                    href="https://github.com/azsoftstudio/colorforge"
+                                    href="https://colorforge.azsoftstudio.workers.dev/documentation"
                                     className={styles.fullDocsBtn}
                                     target="_blank"
                                     rel="noopener noreferrer"
