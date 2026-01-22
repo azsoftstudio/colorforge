@@ -112,3 +112,6 @@ Vite produces a static React bundle in the `dist/` directory.
 - Output directory: `Windows Build/`
 - Target: NSIS (Windows Setup)
 - Icon: Managed via `scripts/generate-icon.js`
+
+### 🛠️ Code Signing Note
+Current builds are **unsigned**. Users will encounter the Windows SmartScreen "Unknown Publisher" warning. To eliminate this, an EV Code Signing Certificate would need to be integrated into the `electron-builder` pipeline.

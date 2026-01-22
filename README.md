@@ -96,6 +96,9 @@ To generate a standalone `.exe` installer:
 npm run make-exe
 ```
 
+> [!NOTE]
+> **Windows SmartScreen**: Since this is an open-source project without a paid EV Code Signing Certificate, you may see a "Windows protected your PC" warning when running the installer. This is normal for unsigned apps. To proceed, click **"More info"** and then **"Run anyway"**.
+
 ---
 
 <div align="center">
