@@ -46,6 +46,12 @@ function createWindow() {
 
     mainWindow.loadFile(path.join(__dirname, '../dist/index.html'));
 
+    // Intercept target="_blank" links and open in system browser
+    mainWindow.webContents.setWindowOpenHandler(({ url }) => {
+        shell.openExternal(url);
+        return { action: 'deny' };
+    });
+
     mainWindow.once('ready-to-show', () => {
         mainWindow.maximize();
         mainWindow.show();
