@@ -4,7 +4,7 @@ import { generateHarmoniesLCH, hsvToRgb, rgbToHex, rgbToHsv } from '../utils/col
 import styles from './PaletteDisplay.module.css';
 
 const PaletteDisplay = () => {
-    const { hsv, updateHsv, hex } = useColor();
+    const { hsv, updateHsv } = useColor();
     const [activeTab, setActiveTab] = useState('complementary');
     const tabsRef = useRef(null);
     const [showLeftArrow, setShowLeftArrow] = useState(false);
@@ -19,6 +19,7 @@ const PaletteDisplay = () => {
     // Sync lockedHsv with global hsv when NOT locked
     useEffect(() => {
         if (!isLocked) {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             setLockedHsv(hsv);
         }
     }, [hsv, isLocked]);

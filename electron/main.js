@@ -47,18 +47,10 @@ function createWindow() {
     mainWindow.loadFile(path.join(__dirname, '../dist/index.html'));
 
     mainWindow.once('ready-to-show', () => {
+        mainWindow.maximize();
         mainWindow.show();
     });
 }
-
-// Handle documentation opening in system browser
-ipcMain.on('open-docs', () => {
-    const docsPath = app.isPackaged
-        ? path.join(process.resourcesPath, 'app.asar.unpacked', 'public', 'documentation.html')
-        : path.join(__dirname, '../public/documentation.html');
-
-    shell.openExternal(`file://${docsPath}`);
-});
 
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') app.quit();
