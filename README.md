@@ -13,7 +13,7 @@ The ultimate color system design tool for **UI designers, frontend developers, a
 
 ---
 
-![Hero GIF Placeholder](docs/assets/hero.gif)
+![ColorForge Hero](docs/assets/hero.webp)
 
 ---
 
@@ -40,7 +40,7 @@ The ultimate color system design tool for **UI designers, frontend developers, a
 - **Keyboard Mastery**: Full support for power-user shortcuts (Undo `Ctrl+Z` / Redo `Ctrl+Y`) with dedicated top-bar buttons for ease of use.
 
 ### ⚖️ Accessibility & Sampling
-- **EyeDropper Tool**: Sample any pixel from your entire screen directly (Windows native support).
+- **EyeDropper Tool**: Sample any pixel from your image directly (Windows native support).
 - **Pro Contrast Checker**: Real-time **WCAG 2.1** ratings (AA/AAA) for text readability on both light & dark backgrounds.
 
 ---
@@ -106,7 +106,7 @@ npm run make-exe
 
 ## 📖 Documentation & Resources
 
-![Documentation GIF Placeholder](docs/assets/docs.gif)
+- **Documentation**: [colorforge.azsoftstudio/docs](https://colorforge.azsoftstudio.workers.dev/documentation)
 
 Detailed guides, tutorials, and architectural references are available to help you master the LCH color workflow.
 
@@ -117,8 +117,8 @@ Detailed guides, tutorials, and architectural references are available to help y
 Developed with ❤️ by **AZSoftStudio**.
 Licensed under **MIT** — contributions and feedback are always welcome!
 
-- **GitHub**: [https://github.com/azsoftstudio/colorforge](https://github.com/azsoftstudio/colorforge)
-- **Website**: [azsoftstudio.co](https://azsoftstudio.co)
+- **GitHub**: [github.com/azsoftstudio/colorforge](https://github.com/azsoftstudio/colorforge)
+- **Website**: [colorforge.azsoftstudio](https://colorforge.azsoftstudio.workers.dev/)
 
 ---
 
