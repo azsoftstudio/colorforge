@@ -2,7 +2,8 @@
 
 # 🎨 ColorForge
 
-**The ultimate color system design tool for UI designers and game developers.**
+**Explore, harmonize, and export colors with precision — fully offline and WCAG-ready.**
+The ultimate color system design tool for **UI designers, frontend developers, and game developers**.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)](https://github.com/azsoftstudio/colorforge)
@@ -12,31 +13,52 @@
 
 ---
 
-[Features](#-key-features) • [Tech Stack](#-technology-stack) • [Getting Started](#-getting-started) • [Documentation](https://colorforge.azsoftstudio.workers.dev/documentation)
+![Hero GIF Placeholder](docs/assets/hero.gif)
+
+---
+
+[Features](#-key-features) • [Security](#-security--privacy) • [Tech Stack](#-technology-stack) • [Getting Started](#-getting-started)
 
 </div>
 
 ## 🌟 Overview
 
-**ColorForge** is a high-end color system design tool built for professionals who demand precision and aesthetics. It provides a sophisticated interface for exploring color harmonies, checking accessibility, and managing complex design workflows with ease.
+**ColorForge** is a high-end color system design tool built for professionals who demand precision, aesthetics, and workflow efficiency. From exploring harmonies to checking accessibility and managing palettes, ColorForge provides a **sophisticated, distraction-free interface** for designers and developers alike.
 
 ---
 
 ## 🚀 Key Features
 
 ### 🎡 Premium Color Exploration
-- **Hover-Ready Color Wheel**: An intuitive **HSV** (Hue, Saturation, Value) selection interface with high-fidelity visual rendering.
-- **Pro LCH Engine**: Perceptually uniform color generation via the **LCH** (Lightness, Chroma, Hue) space ensures your harmonies are visually balanced and mathematically superior to standard RGB/HSV models.
+- **Hover-Ready Color Wheel**: An intuitive **HSV** (Hue, Saturation, Value) selection interface with real-time feedback and high-fidelity rendering.
+- **Pro LCH Engine**: Perceptually uniform color generation via the **LCH** space ensures your harmonies are visually balanced and mathematically superior.
+- **Image Palette Extraction**: Upload images to instantly extract dominant colors and build themed palettes.
 
 ### 📋 Workflow Optimization
 - **Palette Lock**: Freeze your inspiration. Lock generated colors to browse alternatives without losing your core base.
-- **Persistent History**: Never lose a shade. Your recently used colors are automatically saved locally.
-- **Keyboard Mastery**: Full support for power-user shortcuts (Undo `Ctrl+Z` / Redo `Ctrl+Y`).
+- **Persistent History**: Never lose a shade. Your recently used colors are automatically saved locally and persist across sessions.
+- **Keyboard Mastery**: Full support for power-user shortcuts (Undo `Ctrl+Z` / Redo `Ctrl+Y`) with dedicated top-bar buttons for ease of use.
 
 ### ⚖️ Accessibility & Sampling
-- **EyeDropper API**: Sample any pixel from your screen directly (on supported systems).
-- **Pro Contrast Checker**: Real-time **WCAG 2.1** ratings (AA/AAA) against light and dark backgrounds.
-- **Image Palette Extraction**: Upload images to instantly extract their dominant color profiles.
+- **EyeDropper Tool**: Sample any pixel from your entire screen directly (Windows native support).
+- **Pro Contrast Checker**: Real-time **WCAG 2.1** ratings (AA/AAA) for text readability on both light & dark backgrounds.
+
+---
+
+## 🛡 Security & Privacy
+
+ColorForge follows **Electron’s Default-Deny security model**, ensuring the highest standard of user safety and data privacy. The app is **fully offline**, with **zero tracking**, and all history is stored exclusively on your local machine.
+
+| Layer | Status | Why it Matters |
+| :--- | :--- | :--- |
+| **Node Integration** | Disabled | Prevents arbitrary filesystem and shell access. |
+| **Context Isolation** | Enabled | Keeps the UI logic strictly separated from internal app APIs. |
+| **Sandbox** | Enabled | Restricts application access to the operating system level. |
+| **Preload Script** | Active | Allows only strictly defined, safe IPC commands to pass through. |
+| **CSP**| Strict | Blocks unauthorized scripts and all external network requests. |
+
+> [!IMPORTANT]
+> **Windows SmartScreen Note**: Since this is an open-source, unsigned application, Windows may show a warning during installation. This is normal. The **source code is fully available** in this repository for transparency. To proceed, click **More info → Run anyway**.
 
 ---
 
@@ -52,35 +74,17 @@
 
 ---
 
-## 🛡️ Security Model
-
-ColorForge follows a **Default-Deny** Electron security posture to ensure the highest standard of user safety and data privacy.
-
-| Layer | Status | Rationale |
-| :--- | :--- | :--- |
-| **Node Integration** | Disabled | Prevents arbitrary filesystem and shell access. |
-| **Context Isolation** | Enabled | Maintains a clean separation between UI and internal APIs. |
-| **Sandbox** | Enabled | Restricts application access to the operating system level. |
-| **Preload Script** | Active | Safely bridges strictly defined IPC commands to the renderer. |
-| **CSP** | Strict | Blocks external scripts and unauthorized network requests. |
-
----
-
 ## 🏁 Getting Started
 
 ### Prerequisites
 - [Node.js](https://nodejs.org/) (Latest LTS recommended)
 - `npm` or `yarn`
+- Windows 10+ recommended
 
-### Installation
+### Clone & Install
 ```bash
-# Clone the repository
 git clone https://github.com/azsoftstudio/colorforge.git
-
-# Enter the directory
 cd colorforge
-
-# Install dependencies
 npm install
 ```
 
@@ -90,21 +94,36 @@ Launch the development environment:
 npm run dev
 ```
 
-### Building for Windows
-To generate a standalone `.exe` installer:
+### Build Standalone EXE
 ```bash
+# Generates the localized, fully-offline installer
 npm run make-exe
 ```
 
-> [!NOTE]
-> **Windows SmartScreen**: Since this is an open-source project without a paid EV Code Signing Certificate, you may see a "Windows protected your PC" warning when running the installer. This is normal for unsigned apps. To proceed, click **"More info"** and then **"Run anyway"**.
+> **Note**: Once built, the standalone `.exe` works fully offline — just double-click to launch.
+
+---
+
+## 📖 Documentation & Resources
+
+![Documentation GIF Placeholder](docs/assets/docs.gif)
+
+Detailed guides, tutorials, and architectural references are available to help you master the LCH color workflow.
+
+---
+
+## ❤️ Support & Contributions
+
+Developed with ❤️ by **AZSoftStudio**.
+Licensed under **MIT** — contributions and feedback are always welcome!
+
+- **GitHub**: [https://github.com/azsoftstudio/colorforge](https://github.com/azsoftstudio/colorforge)
+- **Website**: [azsoftstudio.co](https://azsoftstudio.co)
 
 ---
 
 <div align="center">
 
-### 📖 [View Detailed Documentation](https://colorforge.azsoftstudio.workers.dev/documentation)
-
-Developed with ❤️ by **AZSoftStudio**
+Developed by **AZSoftStudio**
 
 </div>
