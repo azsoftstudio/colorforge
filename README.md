@@ -25,7 +25,6 @@ The ultimate color system design tool for **UI designers, frontend developers, a
 
 ColorForge transforms raw inspiration into production-ready color systems through a calibrated three-stage cycle. 
 
-```mermaid
 graph LR
     %% Node Definitions
     A["<b>1. PICK</b><br/><i>The Spark</i>"] 
