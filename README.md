@@ -25,43 +25,23 @@ The ultimate color system design tool for **UI designers, frontend developers, a
 
 ColorForge transforms raw inspiration into production-ready color systems through a calibrated three-stage cycle. 
 
-graph LR
-    %% Node Definitions
-    A["<b>1. PICK</b><br/><i>The Spark</i>"] 
-    B["<b>2. ANALYZE</b><br/><i>The Refinement</i>"] 
-    C["<b>3. FORGE</b><br/><i>The Export</i>"]
+```mermaid
+graph TD
+    User([User Image/Palette]) -->|Uploads| Browser[Renderer Process]
+    Browser -->|Local Processing| LCH[Pro LCH Engine]
+    LCH -->|Display| UI[React UI]
+    UI -->|Persist| LocalStorage[(Local Storage)]
+    LocalStorage -.->|No Access| Internet((External Web))
     
-    %% Flow
-    A --> B --> C
-    
-    %% Input Details
-    subgraph "Sourcing"
-    A1[HSV Wheel] -.-> A
-    A2[Native EyeDropper] -.-> A
-    A3[Image Upload] -.-> A
+    subgraph "Electron Sandbox"
+        Browser
+        LCH
+        UI
     end
     
-    %% Processing Details
-    subgraph "Processing"
-    B1[LCH Harmony Engine] -.-> B
-    B2[WCAG Contrast Check] -.-> B
-    B3[Palette Locking] -.-> B
-    end
-    
-    %% Output Details
-    subgraph "Deployment"
-    C1[LAB / LCH] -.-> C
-    C2[CMYK / RGB] -.-> C
-    C3[HEX / CSS] -.-> C
-    end
-
-    %% Styles
-    style A fill:#6366f1,stroke:#818cf8,stroke-width:2px,color:#fff
-    style B fill:#14b8a6,stroke:#2dd4bf,stroke-width:2px,color:#fff
-    style C fill:#f59e0b,stroke:#fbbf24,stroke-width:2px,color:#fff
-    
-    classDef default font-family:Inter,font-size:14px;
+    style Internet fill:#f66,stroke:#333,stroke-dasharray: 5 5
 ```
+
 
 ---
 
