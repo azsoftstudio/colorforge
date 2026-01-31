@@ -28,7 +28,7 @@ ColorForge transforms raw inspiration into production-ready color systems throug
 ```mermaid
 graph LR
     %% Main Pipeline
-    S([<b>1. SOURCE</b>]) ==> A([<b>2. ANALYZE</b>]) ==> P([<b>3. PRODUCE</b>])
+    S([1. SOURCE]) ==> A([2. ANALYZE]) ==> P([3. PRODUCE])
 
     %% Details
     subgraph "Sourcing"
@@ -61,7 +61,6 @@ graph LR
     style P fill:#f59e0b,stroke:#fbbf24,stroke-width:2px,color:#fff
     
     style S1,S2,S3,A1,A2,A3,P1,P2,P3 fill:none,stroke:#475569,stroke-dasharray: 4 4,color:#64748b
-    classDef default font-family:Inter,font-size:13px;
 ```
 
 
