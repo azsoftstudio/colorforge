@@ -2,14 +2,10 @@
 
 # 🎨 ColorForge
 
-**Explore, harmonize, and export colors with precision — fully offline and WCAG-ready.**
+**Explore, harmonize, and export colors with mathematical precision — fully offline and security-hardened.**
 The ultimate color system design tool for **UI designers, frontend developers, and game developers**.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)](https://github.com/azsoftstudio/colorforge)
-[![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)](https://react.dev/)
-[![Electron](https://img.shields.io/badge/Electron-Desktop-47848f?logo=electron&logoColor=white)](https://www.electronjs.org/)
-[![Vite](https://img.shields.io/badge/Vite-Built-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)](https://github.com/azsoftstudio/colorforge) [![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)](https://react.dev/) [![Electron](https://img.shields.io/badge/Electron-Desktop-47848f?logo=electron&logoColor=white)](https://www.electronjs.org/) [![Vite](https://img.shields.io/badge/Vite-Built-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
 
 ---
 
@@ -17,113 +13,152 @@ The ultimate color system design tool for **UI designers, frontend developers, a
 
 ---
 
-[Features](#-key-features) • [Security](#-security--privacy) • [Tech Stack](#-technology-stack) • [Getting Started](#-getting-started)
+[Features](#-key-features) • [Security](#-security--privacy) • [Tech Stack](#-technology-stack) • [Getting Started](#-getting-started) • [Full Documentation](https://colorforge.azsoftstudio.workers.dev/documentation)
 
 </div>
 
 ## 🌟 Overview
 
-**ColorForge** is a high-end color system design tool built for professionals who demand precision, aesthetics, and workflow efficiency. From exploring harmonies to checking accessibility and managing palettes, ColorForge provides a **sophisticated, distraction-free interface** for designers and developers alike.
+**ColorForge** is a professional-grade color exploration tool that bridges the gap between creative inspiration and technical implementation. Built with a focus on **perceptive uniformity**, ColorForge ensures that your palettes aren't just mathematically aligned in RGB space, but visually balanced for human eyes using our custom **Pro LCH Engine**.
+
+### 🔮 The Forge Alchemy
+
+ColorForge transforms raw inspiration into production-ready color systems through a calibrated three-stage cycle. 
+
+```mermaid
+graph LR
+    %% Node Definitions
+    A["<b>1. PICK</b><br/><i>The Spark</i>"] 
+    B["<b>2. ANALYZE</b><br/><i>The Refinement</i>"] 
+    C["<b>3. FORGE</b><br/><i>The Export</i>"]
+    
+    %% Flow
+    A --> B --> C
+    
+    %% Input Details
+    subgraph "Sourcing"
+    A1[HSV Wheel] -.-> A
+    A2[Native EyeDropper] -.-> A
+    A3[Image Upload] -.-> A
+    end
+    
+    %% Processing Details
+    subgraph "Processing"
+    B1[LCH Harmony Engine] -.-> B
+    B2[WCAG Contrast Check] -.-> B
+    B3[Palette Locking] -.-> B
+    end
+    
+    %% Output Details
+    subgraph "Deployment"
+    C1[LAB / LCH] -.-> C
+    C2[CMYK / RGB] -.-> C
+    C3[HEX / CSS] -.-> C
+    end
+
+    %% Styles
+    style A fill:#6366f1,stroke:#818cf8,stroke-width:2px,color:#fff
+    style B fill:#14b8a6,stroke:#2dd4bf,stroke-width:2px,color:#fff
+    style C fill:#f59e0b,stroke:#fbbf24,stroke-width:2px,color:#fff
+    
+    classDef default font-family:Inter,font-size:14px;
+```
 
 ---
 
 ## 🚀 Key Features
 
-### 🎡 Premium Color Exploration
-- **Hover-Ready Color Wheel**: An intuitive **HSV** (Hue, Saturation, Value) selection interface with real-time feedback and high-fidelity rendering.
-- **Pro LCH Engine**: Perceptually uniform color generation via the **LCH** space ensures your harmonies are visually balanced and mathematically superior.
-- **Image Palette Extraction**: Upload images to instantly extract dominant colors and build themed palettes.
+### 🎡 Perceptual Exploration
+- **Pro LCH Engine**: Generate harmonies (Complementary, Triadic, Tetradic, etc.) using the **LCH** (Lightness, Chroma, Hue) space, ensuring perceptual balance across all shades.
+- **Interactive HSV Wheel**: A high-fidelity, real-time interface for rapid color discovery.
+- **Palette Locking**: Toggle "Lock" to explore harmony variations while keeping your core base color persistent.
 
-### 📋 Workflow Optimization
-- **Palette Lock**: Freeze your inspiration. Lock generated colors to browse alternatives without losing your core base.
-- **Persistent History**: Never lose a shade. Your recently used colors are automatically saved locally and persist across sessions.
-- **Keyboard Mastery**: Full support for power-user shortcuts (Undo `Ctrl+Z` / Redo `Ctrl+Y`) with dedicated top-bar buttons for ease of use.
+### 📋 Professional Workflow
+- **Precision Export**: Copy colors in professional formats including **LAB, LCH, CMYK, HSL, RGB, and HEX**.
+- **Local History**: Automatically saves your recently used colors locally, persisting across sessions without any cloud dependency.
+- **Undo/Redo Mastery**: Native support for history management via dedicated UI buttons or standard `Ctrl+Z` / `Ctrl+Y` shortcuts.
 
-### ⚖️ Accessibility & Sampling
-- **EyeDropper Tool**: Sample any pixel from your image directly (Windows native support).
-- **Pro Contrast Checker**: Real-time **WCAG 2.1** ratings (AA/AAA) for text readability on both light & dark backgrounds.
+### ⚖️ Accessibility & Screen Sampling
+- **Native EyeDropper**: Sample any pixel from your screen (or uploaded images) using the high-accuracy system API.
+- **WCAG Contrast Checker**: Get instant **WCAG 2.1** (AA/AAA) ratings for text readability on both light and dark backgrounds.
+- **Contrast Enforcement**: Mathematically shift your palette to automatically meet WCAG standards with a single toggle.
 
 ---
 
 ## 🛡 Security & Privacy
 
-ColorForge follows **Electron’s Default-Deny security model**, ensuring the highest standard of user safety and data privacy. The app is **fully offline**, with **zero tracking**, and all history is stored exclusively on your local machine.
+ColorForge is built on a **Default-Deny** security model. We prioritize your privacy and system integrity by ensuring the application operates in a completely isolated environment.
 
-| Layer | Status | Why it Matters |
+| Layer | Status | Technical Detail |
 | :--- | :--- | :--- |
-| **Node Integration** | Disabled | Prevents arbitrary filesystem and shell access. |
-| **Context Isolation** | Enabled | Keeps the UI logic strictly separated from internal app APIs. |
-| **Sandbox** | Enabled | Restricts application access to the operating system level. |
-| **Preload Script** | Active | Allows only strictly defined, safe IPC commands to pass through. |
-| **CSP**| Strict | Blocks unauthorized scripts and all external network requests. |
+| **Offline Mode** | 100% | No external network requests; zero tracking or telemetry. |
+| **Execution** | Sandboxed | Renderer process is strictly isolated from the operating system. |
+| **Node Integration** | Disabled | Prevents arbitrary filesystem or shell access from the UI. |
+| **Context Isolation** | Active | Separates renderer logic from internal app APIs via a secure IPC bridge. |
+| **CSP** | Strict | Blocks unauthorized scripts and all non-system external assets. |
 
 > [!IMPORTANT]
-> **Windows SmartScreen Note**: Since this is an open-source, unsigned application, Windows may show a warning during installation. This is normal. The **source code is fully available** in this repository for transparency. To proceed, click **More info → Run anyway**.
+> **Windows Security Notice**: As ColorForge is an open-source, community-driven tool, Windows may flag the installer as "unsigned." This is expected. The source code is fully transparent and available here for audit. To install, click **More info → Run anyway**.
 
 ---
 
 ## 🛠 Technology Stack
 
-| Layer | Technology |
+| Component | Technology |
 | :--- | :--- |
-| **Core Framework** | [React 19](https://reactjs.org/) |
-| **Build Tooling** | [Vite](https://vitejs.dev/) |
-| **Desktop Shell** | [Electron](https://www.electronjs.org/) |
+| **Frontend** | [React 19](https://reactjs.org/) |
+| **Runtime** | [Electron](https://www.electronjs.org/) |
+| **Bundler** | [Vite](https://vitejs.dev/) |
 | **Styling** | Vanilla CSS + CSS Modules |
-| **Logic** | Custom LAB/LCH Math Utilities |
+| **Logic** | Custom LAB/LCH/XYZ Math Utilities |
 
 ---
 
 ## 🏁 Getting Started
 
 ### Prerequisites
-- [Node.js](https://nodejs.org/) (Latest LTS recommended)
-- `npm` or `yarn`
-- Windows 10+ recommended
+- [Node.js](https://nodejs.org/) (Latest LTS)
+- Windows 10/11 (Recommended for native EyeDropper support)
 
-### Clone & Install
+### Setup & Development
 ```bash
+# Clone the repository
 git clone https://github.com/azsoftstudio/colorforge.git
-cd colorforge
-npm install
-```
 
-### Development
-Launch the development environment:
-```bash
+# Install dependencies
+npm install
+
+# Launch development environment (Vite + Electron)
 npm run dev
 ```
 
-### Build Standalone EXE
+### Production Build
 ```bash
-# Generates the localized, fully-offline installer
+# Generate a standalone Windows installer (.exe)
 npm run make-exe
 ```
 
-> **Note**: Once built, the standalone `.exe` works fully offline — just double-click to launch.
+---
+
+## 📖 Additional Resources
+
+Looking for more depth? Master the LCH workflow with our [Official Documentation](https://colorforge.azsoftstudio.workers.dev/documentation):
+- Mini-tutorials on accessible palette design.
+- Technical deep-dives into LCH Color Theory.
+- Developer API references for internal utilities.
 
 ---
 
-## 📖 Documentation & Resources
-
-- **Documentation**: [colorforge.azsoftstudio/docs](https://colorforge.azsoftstudio.workers.dev/documentation)
-
-Detailed guides, tutorials, and architectural references are available to help you master the LCH color workflow.
-
----
-
-## ❤️ Support & Contributions
+## ❤️ Contributions & Support
 
 Developed with ❤️ by **AZSoftStudio**.
-Licensed under **MIT** — contributions and feedback are always welcome!
+Licensed under **MIT** — we welcome community contributions and feedback!
 
-- **GitHub**: [github.com/azsoftstudio/colorforge](https://github.com/azsoftstudio/colorforge)
-- **Website**: [colorforge.azsoftstudio](https://colorforge.azsoftstudio.workers.dev/)
-
----
+- **Website**: [colorforge.azsoftstudio.workers.dev](https://colorforge.azsoftstudio.workers.dev/)
+- **Documentation**: [Full Guide](https://colorforge.azsoftstudio.workers.dev/documentation)
 
 <div align="center">
 
-Developed by **AZSoftStudio**
+**ColorForge** • Professional Color Engineering
 
 </div>
