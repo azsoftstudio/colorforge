@@ -43,7 +43,7 @@ graph LR
         direction TB
         A1[LCH Engine]
         A2[WCAG Check]
-        A3[Locking]
+        A3[Palette Generation]
     end
     A1 & A2 & A3 -.-> A
 
@@ -51,7 +51,7 @@ graph LR
         direction TB
         P1[LAB / LCH]
         P2[CMYK / RGB]
-        P3[HEX / CSS]
+        P3[HEX / HSL]
     end
     P1 & P2 & P3 -.-> P
 
