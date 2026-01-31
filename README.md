@@ -21,25 +21,47 @@ The ultimate color system design tool for **UI designers, frontend developers, a
 
 **ColorForge** is a professional-grade color exploration tool that bridges the gap between creative inspiration and technical implementation. Built with a focus on **perceptive uniformity**, ColorForge ensures that your palettes aren't just mathematically aligned in RGB space, but visually balanced for human eyes using our custom **Pro LCH Engine**.
 
-### 🔮 The Forge Alchemy
+### ⚙️ The Forge Pipeline
 
-ColorForge transforms raw inspiration into production-ready color systems through a calibrated three-stage cycle. 
+ColorForge transforms raw inspiration into production-ready color systems through a high-precision engineering cycle.
 
 ```mermaid
-graph TD
-    User([User Image/Palette]) -->|Uploads| Browser[Renderer Process]
-    Browser -->|Local Processing| LCH[Pro LCH Engine]
-    LCH -->|Display| UI[React UI]
-    UI -->|Persist| LocalStorage[(Local Storage)]
-    LocalStorage -.->|No Access| Internet((External Web))
-    
-    subgraph "Electron Sandbox"
-        Browser
-        LCH
-        UI
+graph LR
+    %% Main Pipeline
+    S([<b>1. SOURCE</b>]) ==> A([<b>2. ANALYZE</b>]) ==> P([<b>3. PRODUCE</b>])
+
+    %% Details
+    subgraph "Sourcing"
+        direction TB
+        S1[HSV Wheel]
+        S2[EyeDropper]
+        S3[Image Upload]
     end
+    S1 & S2 & S3 -.-> S
+
+    subgraph "Calibration"
+        direction TB
+        A1[LCH Engine]
+        A2[WCAG Check]
+        A3[Locking]
+    end
+    A1 & A2 & A3 -.-> A
+
+    subgraph "Deployment"
+        direction TB
+        P1[LAB / LCH]
+        P2[CMYK / RGB]
+        P3[HEX / CSS]
+    end
+    P1 & P2 & P3 -.-> P
+
+    %% Aesthetics
+    style S fill:#6366f1,stroke:#818cf8,stroke-width:2px,color:#fff
+    style A fill:#14b8a6,stroke:#2dd4bf,stroke-width:2px,color:#fff
+    style P fill:#f59e0b,stroke:#fbbf24,stroke-width:2px,color:#fff
     
-    style Internet fill:#f66,stroke:#333,stroke-dasharray: 5 5
+    style S1,S2,S3,A1,A2,A3,P1,P2,P3 fill:none,stroke:#475569,stroke-dasharray: 4 4,color:#64748b
+    classDef default font-family:Inter,font-size:13px;
 ```
 
 
