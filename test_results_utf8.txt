@@ -1,0 +1,85 @@
+﻿
+[1m[36mΓöÇΓöÇ 1. HEX Γåö RGB  (exact, no rounding loss) ΓöÇΓöÇ[0m
+  [32mΓ£ô[0m hexToRgb  #FF0000 ΓåÆ red
+  [32mΓ£ô[0m hexToRgb  #00FF00 ΓåÆ lime
+  [32mΓ£ô[0m hexToRgb  #0000FF ΓåÆ blue
+  [32mΓ£ô[0m hexToRgb  #FFFFFF ΓåÆ white
+  [32mΓ£ô[0m hexToRgb  #000000 ΓåÆ black
+  [32mΓ£ô[0m hexToRgb  #FFF shorthand
+  [32mΓ£ô[0m hexToRgb  lowercase #3a7bd5
+  [32mΓ£ô[0m rgbToHex  {255,0,0} ΓåÆ #ff0000
+  [32mΓ£ô[0m rgbToHex  {58,123,213}
+
+[1m[36mΓöÇΓöÇ 2. RGB Γåö HSV  (round-trip max ╬ö=1 per channel) ΓöÇΓöÇ[0m
+  [32mΓ£ô[0m rgbToHsv  red    {255,0,0}
+  [32mΓ£ô[0m rgbToHsv  lime   {0,255,0}
+  [32mΓ£ô[0m rgbToHsv  blue   {0,0,255}
+  [32mΓ£ô[0m rgbToHsv  white  {255,255,255}
+  [32mΓ£ô[0m rgbToHsv  black  {0,0,0}
+  [32mΓ£ô[0m rgbToHsv  #3a7bd5
+  [32mΓ£ô[0m hsvToRgb round-trip {"r":255,"g":0,"b":0}
+  [32mΓ£ô[0m hsvToRgb round-trip {"r":0,"g":128,"b":255}
+  [32mΓ£ô[0m hsvToRgb round-trip {"r":180,"g":60,"b":120}
+  [32mΓ£ô[0m hsvToRgb round-trip {"r":200,"g":200,"b":200}
+
+[1m[36mΓöÇΓöÇ 3. RGB Γåö HSL  (round-trip max ╬ö=1 per channel) ΓöÇΓöÇ[0m
+  [32mΓ£ô[0m rgbToHsl  red    {255,0,0}
+  [32mΓ£ô[0m rgbToHsl  lime   {0,255,0}
+  [32mΓ£ô[0m rgbToHsl  blue   {0,0,255}
+  [32mΓ£ô[0m rgbToHsl  white  {255,255,255}
+  [32mΓ£ô[0m rgbToHsl  black  {0,0,0}
+  [31mΓ£ù[0m hslToRgb  hsl(219,100%,65%)
+      [31mr: got 77 expected 58 (╬ö19)[0m
+      [31mg: got 139 expected 123 (╬ö16)[0m
+      [31mb: got 255 expected 213 (╬ö42)[0m
+  [32mΓ£ô[0m hslToRgb round-trip {"r":255,"g":0,"b":0}
+  [32mΓ£ô[0m hslToRgb round-trip {"r":0,"g":128,"b":255}
+  [32mΓ£ô[0m hslToRgb round-trip {"r":180,"g":60,"b":120}
+  [32mΓ£ô[0m hslToRgb round-trip {"r":200,"g":200,"b":200}
+
+[1m[36mΓöÇΓöÇ 4. RGB Γåö CMYK  (round-trip max ╬ö=1 per channel) ΓöÇΓöÇ[0m
+  [32mΓ£ô[0m rgbToCmyk  red   {255,0,0}
+  [32mΓ£ô[0m rgbToCmyk  black {0,0,0}
+  [32mΓ£ô[0m rgbToCmyk  white {255,255,255}
+  [32mΓ£ô[0m rgbToCmyk  cyan  {0,255,255}
+  [32mΓ£ô[0m cmykToRgb round-trip {"r":255,"g":0,"b":0}
+  [32mΓ£ô[0m cmykToRgb round-trip {"r":0,"g":128,"b":255}
+  [32mΓ£ô[0m cmykToRgb round-trip {"r":180,"g":60,"b":120}
+  [32mΓ£ô[0m cmykToRgb round-trip {"r":200,"g":200,"b":200}
+
+[1m[36mΓöÇΓöÇ 5. RGB ΓåÆ LAB  (reference: IEC 61966-2-1 / Lindbloom) ΓöÇΓöÇ[0m
+  [32mΓ£ô[0m rgbToLab  red   {255,0,0}  ΓåÆ LΓëê53 aΓëê80 bΓëê67
+  [32mΓ£ô[0m rgbToLab  white {255,255,255}ΓåÆ L=100 a=0 b=0
+  [32mΓ£ô[0m rgbToLab  black {0,0,0}    ΓåÆ L=0 a=0 b=0
+  [31mΓ£ù[0m rgbToLab  lime  {0,255,0}  ΓåÆ LΓëê88 aΓëê-79 bΓëê81
+      [31ma: got -86 expected -79 (╬ö7)[0m
+      [31mb: got 83 expected 81 (╬ö2)[0m
+  [32mΓ£ô[0m rgbToLab  blue  {0,0,255}  ΓåÆ LΓëê32 aΓëê79 bΓëê-108
+
+[1m[36mΓöÇΓöÇ 6. LAB Γåö RGB  round-trip (max ╬ö=2 per channel due to integer LAB) ΓöÇΓöÇ[0m
+  [32mΓ£ô[0m labToRgb round-trip {"r":255,"g":0,"b":0}
+  [32mΓ£ô[0m labToRgb round-trip {"r":0,"g":128,"b":255}
+  [32mΓ£ô[0m labToRgb round-trip {"r":180,"g":60,"b":120}
+  [32mΓ£ô[0m labToRgb round-trip {"r":200,"g":200,"b":200}
+
+[1m[36mΓöÇΓöÇ 7. RGB ΓåÆ LCH  (reference values) ΓöÇΓöÇ[0m
+  [32mΓ£ô[0m rgbToLch red  LΓëê53 CΓëê105 HΓëê40
+  [32mΓ£ô[0m rgbToLch white L=100 C=0
+
+[1m[36mΓöÇΓöÇ 8. WCAG 2.1 Contrast Ratio  (exact to 2 decimal places) ΓöÇΓöÇ[0m
+  [32mΓ£ô[0m contrast  black/white = 21:1  (21.0000)
+  [32mΓ£ô[0m contrast  white/white = 1:1  (1.0000)
+  [32mΓ£ô[0m contrast  #767676/white Γëê 4.54  (4.5422)
+  [32mΓ£ô[0m contrast  red/white Γëê 3.99  (3.9985)
+
+[1m[36mΓöÇΓöÇ 9. Edge Cases ΓöÇΓöÇ[0m
+  [32mΓ£ô[0m rgbToCmyk black ΓÇö no NaN in result
+  [32mΓ£ô[0m hexToRgb invalid hex ΓåÆ null
+  [32mΓ£ô[0m hexToRgb 5-digit hex ΓåÆ null
+  [32mΓ£ô[0m lchToRgb round-trip #3a7bd5 (tol=10, two rounding steps)
+
+[1mΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ[0m
+[31m[1m2/56 tests FAILED[0m
+ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+
+

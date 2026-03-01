@@ -9,7 +9,7 @@ const clamp = (val, min, max) => Math.min(Math.max(val, min), max);
 // Helper: Parse standard HEX string to {r, g, b}
 // Supports 3-digit and 6-digit hex codes
 export const hexToRgb = (hex) => {
-    let cleanHex = hex.replace('#', '');
+    let cleanHex = hex.replace('#', '').trim();
     if (cleanHex.length === 3) {
         cleanHex = cleanHex.split('').map(char => char + char).join('');
     }
@@ -17,6 +17,9 @@ export const hexToRgb = (hex) => {
     if (cleanHex.length !== 6) return null;
 
     const bigint = parseInt(cleanHex, 16);
+    // Guard: if the string contained non-hex chars parseInt returns NaN
+    if (isNaN(bigint)) return null;
+
     const r = (bigint >> 16) & 255;
     const g = (bigint >> 8) & 255;
     const b = bigint & 255;
@@ -287,56 +290,42 @@ export const rgbToLab = ({ r, g, b }) => {
 };
 
 // LAB to RGB (Inverse of rgbToLab)
+// Reference: http://www.easyrgb.com/index.php?X=MATH&H=08
 export const labToRgb = ({ l, a, b }) => {
-    // 1. LAB to XYZ
+    // 1. LAB → XYZ  (D65 illuminant)
     let varY = (l + 16) / 116;
     let varX = a / 500 + varY;
     let varZ = varY - b / 200;
 
     const pow3 = (v) => v * v * v;
-    const epsilon = 0.008856;
-    const kappa = 903.3;
+    const epsilon = 0.008856; // (6/29)³
+    const kappa = 903.3;   // (29/3)³
 
-    if (pow3(varY) > epsilon) varY = pow3(varY);
-    else varY = (varY * 116 - 16) / kappa;
+    varX = pow3(varX) > epsilon ? pow3(varX) : (varX * 116 - 16) / kappa;
+    varY = pow3(varY) > epsilon ? pow3(varY) : (varY * 116 - 16) / kappa;
+    varZ = pow3(varZ) > epsilon ? pow3(varZ) : (varZ * 116 - 16) / kappa;
 
-    if (pow3(varX) > epsilon) varX = pow3(varX);
-    else varX = (varX * 116 - 16) / kappa;
+    // Scale by D65 reference white (values in 0–100 range)
+    const x = varX * 95.047;
+    const y = varY * 100.000;
+    const z = varZ * 108.883;
 
-    if (pow3(varZ) > epsilon) varZ = pow3(varZ);
-    else varZ = (varZ * 116 - 16) / kappa;
+    // 2. XYZ (0-100) → linear sRGB (0-1)
+    //    Standard IEC 61966-2-1 matrix, inputs divided by 100
+    let rLin = (x * 3.2406 + y * -1.5372 + z * -0.4986) / 100;
+    let gLin = (x * -0.9689 + y * 1.8758 + z * 0.0415) / 100;
+    let bLin = (x * 0.0557 + y * -0.2040 + z * 1.0570) / 100;
 
-    const xRef = 95.047;
-    const yRef = 100.000;
-    const zRef = 108.883;
-
-    const x = varX * xRef;
-    const y = varY * yRef;
-    const z = varZ * zRef;
-
-    // 2. XYZ to RGB
-    let r = x * 3.2406 + y * -1.5372 + z * -0.4986;
-    let g = x * -0.9689 + y * 1.8758 + z * 0.0415;
-    let blue = x * 0.0557 + y * -0.2040 + z * 1.0570;
-
-    r = r / 100;
-    g = g / 100;
-    blue = blue / 100;
-
-    const correct = (val) => {
-        return val > 0.0031308
+    // 3. Linear sRGB → gamma-encoded sRGB
+    const gammaEncode = (val) =>
+        val > 0.0031308
             ? 1.055 * Math.pow(val, 1 / 2.4) - 0.055
             : 12.92 * val;
-    };
-
-    r = correct(r);
-    g = correct(g);
-    blue = correct(blue);
 
     return {
-        r: clamp(Math.round(r * 255), 0, 255),
-        g: clamp(Math.round(g * 255), 0, 255),
-        b: clamp(Math.round(blue * 255), 0, 255)
+        r: clamp(Math.round(gammaEncode(rLin) * 255), 0, 255),
+        g: clamp(Math.round(gammaEncode(gLin) * 255), 0, 255),
+        b: clamp(Math.round(gammaEncode(bLin) * 255), 0, 255)
     };
 };
 

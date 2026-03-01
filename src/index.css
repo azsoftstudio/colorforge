@@ -8,7 +8,7 @@
   --accent: #f43f5e;
 
   /* Neutral Colors - Light Mode (Clean, professional) */
-  --bg-app: #ffffff;
+  --bg-app: #f8f8f8;
   --bg-panel: #f4f4f5;
   /* Zinc 100 */
   --bg-input: #ffffff;
@@ -27,7 +27,7 @@
 
   /* Glass effect */
   --glass-bg: rgba(255, 255, 255, 0.7);
-  --glass-border: rgba(255, 255, 255, 0.18);
+  --glass-border: rgba(255, 255, 255, 0.11);
 
   /* Layout */
   --radius-sm: 6px;
@@ -40,7 +40,7 @@
 
 /* Dark Mode (Zinc/Neutral) - Adjusted to be lighter/softer */
 [data-theme='dark'] {
-  --bg-app: #121214;
+  --bg-app: #121214c2;
   /* Slightly lighter than #09090b */
   --bg-panel: #1c1c1f;
   /* Lighter panel */
