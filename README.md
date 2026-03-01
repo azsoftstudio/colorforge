@@ -194,6 +194,7 @@ This section outlines the mathematical foundation and precision characteristics 
 - **Local-first**: No account, no cloud, no tracking.
 - **Offline**: Core features require zero internet connection.
 - **Restricted**: Desktop runtime uses restricted renderer privileges.
+---
 | Layer | Status | Technical Detail |
 | :--- | :--- | :--- |
 | **Offline Mode** | 100% | No external network requests; zero tracking or telemetry. |
